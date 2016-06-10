@@ -4,8 +4,8 @@
    <!--
       LIS 2360:  Web Application Development
       Lesson 4 Assignment
-      Author:  
-      Date:   
+      Author:  Mason Smith
+      Date:   June 10, 2016
       Filename: expenseViewer.html
    -->
    <meta charset="utf-8" />
@@ -64,9 +64,22 @@
           * HINT:  Use the following variable names:  householdInput, otherInput, transportationInput
           *
           *************************************************************************************************-->
-
-
-
+          
+          <p><label for="householdInput">
+            Household (utilities, cellphone, cable, maintenence, etc.):
+              <input type="text" id="householdInput" name="household" />
+              </label>
+          </p>
+          <p><label for="transportationInput">
+            Transportation (public transit, parking, gas, etc.):
+              <input type="text" id="transportationInput" name="transportation" />
+              </label>
+          </p>
+          <p><label for="otherInput">
+            Miscellaneous (magazines, child care, etc.):
+              <input type="text" id="otherInput" name="other" />
+              </label>
+          </p>
         
         </fieldset>                 
 
@@ -142,10 +155,10 @@
               
               var shelterAmt = document.getElementById("shelterInput").value;
               var foodAmt = document.getElementById("foodInput").value;
-
+              var householdAmt = document.getElementById("householdInput").value;
+              var transportationAmt = document.getElementById("transportationInput").value;
+              var otherAmt = document.getElementById("otherInput").value;
               
-              
-
               /*************************************************************************************************
                * Task 3:  Add the additional code needed that will convert the user's inputs, which are Strings 
                *          to Floats using the parseFloat() function.  This must be done for ALL of the NEW
@@ -164,9 +177,9 @@
 
               shelterAmt = parseFloat(shelterAmt);
               foodAmt = parseFloat(foodAmt);
-
-
-
+              householdAmt = parseFloat(householdAmt);
+              transportationAmt = parseFloat(transportationAmt);
+              otherAmt = parseFloat(otherAmt);
 
               /******************************************************************************************************
                * Task 4:  Add the additional code needed to declare variables that will store the calculation
@@ -185,10 +198,10 @@
               var totalExpenses; //total expenses for the user
               var shelterPct; //shelter category percentage
               var foodPct;  //food category percentage
-
-
-
-
+              var householdPct; //household category percentage
+              var transportationPct;  //transportation category percentage
+              var otherPct;  //other category percentage
+              
               /******************************************************************************************************
                * Task 5:  Add the additional code needed to calcuate the total expense and the percentages for each 
                *          of the NEW categories you've added (Household, Transportation, and Miscellaneous). 
@@ -196,7 +209,7 @@
                *          together using the variables initalized in Task 3.  
                *
                *          Ex.  totalExpenses = shelterAmt + foodAmt + YourVariable + YourVariable + YourVariable;
-	       *          HINT:  Make sure this statement is BEFORE the statements that calculate the percentages!!!
+	             *          HINT:  Make sure this statement is BEFORE the statements that calculate the percentages!!!
                * 
                * Explanation of Code:  
                *          This section of the code calculates the total expenses of all the categories and calculates 
@@ -204,12 +217,14 @@
                *          Household percentage (you must add), Transportation percentage (you must add), and 
                *          Miscellaneous percentage (you must add). The result of the calculations are assigned to the 
                *          variables declared in Task 4.  
-              *******************************************************************************************************/   
-         
+              *******************************************************************************************************/
+              totalExpenses = shelterAmt + foodAmt + householdAmt + transportationAmt + otherAmt;
 
               shelterPct = 100 * (shelterAmt / totalExpenses);
               foodPct = 100 * (foodAmt / totalExpenses);
-
+              householdPct = 100 * (householdAmt / totalExpenses);
+              transportationPct = 100 * (transportationAmt / totalExpenses);
+              otherPct = 100 * (otherAmt / totalExpenses);
 
               /******************************************************************************************************
                * Task 6:  Add the additional code needed to display the total expenses and the percentages for each 
@@ -224,7 +239,8 @@
                *          The toFixed() method is used to ensure a specified number of digits appear after the decimal
                *          place for the value.
                * 
-               *          HINT:  Use the following variable names:  householdPercentage, transportationPercentage, and 	       *          otherPercentage.  It is case sensitive!!!
+               *          HINT:  Use the following variable names:  householdPercentage, transportationPercentage, and
+               *                otherPercentage.  It is case sensitive!!!
                *
                *          The innerHTML property used with the document.getElementById() sets or returns the HTML
                *          content (inner HTML) of an element.
@@ -233,9 +249,9 @@
               document.getElementById("totalExpenses").innerHTML = "<b>Total Expenses:     $</b> " + totalExpenses.toFixed(2);
               document.getElementById("shelterPercentage").innerHTML = "% for <b>shelter</b>:      " + shelterPct.toFixed(1);      
               document.getElementById("foodPercentage").innerHTML = "% for <b>food:</b>      " + foodPct.toFixed(1);
-
-         
-         
+              document.getElementById("householdPercentage").innerHTML = "% for <b>household:</b>      " + householdPct.toFixed(1);
+              document.getElementById("transportationPercentage").innerHTML = "% for <b>transnportation:</b>       " + transportationPct.toFixed(1);
+              document.getElementById("otherPercentage").innerHTML = "% for <b>other</b>       " + otherPct.toFixed(1);
          
          } //end of calculatePercentages function
          
